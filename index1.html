@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pratik Bhandari - Aspiring Mechanical Engineer</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * { font-family: 'Inter', sans-serif; }
+
+        .poppins { font-family: 'Poppins', sans-serif; }
+
+        /* Lightning circular border */
+        .lightning-border {
+            position: relative;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 400% 400%;
+            animation: gradient 3s ease infinite;
+            padding: 4px;
+        }
+        .lightning-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 400% 400%;
+            border-radius: 50%;
+            z-index: -1;
+            animation: gradient 3s ease infinite;
+            filter: blur(8px);
+        }
+
+        /* Rectangular glowing border */
+        .rectangular-border {
+            position: relative;
+            border-radius: 24px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradient 3s ease infinite;
+            padding: 4px;
+        }
+        .rectangular-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            border-radius: 28px;
+            z-index: -1;
+            animation: gradient 3s ease infinite;
+            filter: blur(8px);
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .profile-img { 
+    border-radius: 50%; 
+    width: 300px;   /* Increased from 200px */
+    height: 300px;  /* Increased from 200px */
+    object-fit: cover; 
+}
+
+.profile-img-rect { 
+    border-radius: 20px; 
+    width: 350px;   /* Increased from 280px */
+    height: 450px;  /* Increased from 350px */
+    object-fit: cover; 
+}
+
+
+        .floating { animation: floating 6s ease-in-out infinite; }
+        @keyframes floating { 0%{ transform: translate(0,0) } 50%{ transform: translate(0,-20px) } 100%{ transform: translate(0,0) } }
+
+        .card-3d { transform-style: preserve-3d; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .card-3d:hover { transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02); box-shadow: 0 20px 40px rgba(2,6,23,0.15); }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* legacy dark-mode helper (kept for some custom rules) */
+        .dark-mode { background: #0f172a; color: #f1f5f9; }
+
+        .scroll-smooth { scroll-behavior: smooth; }
+
+        .section-fade { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .section-fade.visible { opacity: 1; transform: translateY(0); }
+
+        .resume-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 600;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        }
+        .resume-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,0.4); }
+
+        .form-input, .form-textarea {
+            background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 12px 16px; transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); background: #ffffff;
+        }
+        .dark .form-input, .dark .form-textarea {
+            background: #1e293b; border-color: #475569; color: #f1f5f9;
+        }
+        .dark .form-input:focus, .dark .form-textarea:focus {
+            background: #0f172a; border-color: #3b82f6;
+        }
+
+        .nav-blur { backdrop-filter: blur(10px); background: rgba(255,255,255,0.9); }
+        .dark .nav-blur { background: rgba(15,23,42,0.9); }
+
+        .nav-link { color: #374151; transition: color 0.3s ease; }
+        .dark .nav-link { color: #f1f5f9; }
+        .nav-link:hover { color: #3b82f6; }
+
+        .skill-bar { width: 0%; transition: width 2s ease; }
+        .skill-bar.animate { width: var(--width); }
+    </style>
+</head>
+
+<body class="scroll-smooth">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-bold text-gradient">Pratik Bhandari</div>
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#education" class="nav-link">Education</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Toggle theme">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+
+                    <button id="mobile-menu" class="md:hidden p-2" aria-label="Open mobile menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-nav" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 nav-link">Home</a>
+                <a href="#about" class="block py-2 nav-link">About</a>
+                <a href="#education" class="block py-2 nav-link">Education</a>
+                <a href="#skills" class="block py-2 nav-link">Skills</a>
+                <a href="#projects" class="block py-2 nav-link">Projects</a>
+                <a href="#contact" class="block py-2 nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text -->
+                <div class="text-center lg:text-left order-2 lg:order-1">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                        <span class="text-gradient">Pratik Bhandari</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6">Aspiring Mechanical Engineer</p>
+                    <p class="text-lg text-gray-500 dark:text-gray-400 mb-8 max-w-2xl lg:max-w-none">
+                        Currently preparing for IOE entrance exam with a passion for innovation and engineering excellence.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#about" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg transition-all transform hover:scale-105">Learn More</a>
+                        <a href="#contact" class="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-8 py-3 rounded-lg transition-all transform hover:scale-105">Get In Touch</a>
+                    </div>
+                </div>
+
+                <!-- Circular Image -->
+                <div class="flex justify-center lg:justify-end order-1 lg:order-2">
+                    <div class="floating">
+                        <div class="lightning-border w-fit">
+                            <!-- Updated profile image -->
+                            <img src="https://i.imgur.com/q1GvfaA.jpeg" alt="Pratik Bhandari" class="profile-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (rectangular image moved to LEFT) -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">About Me</h2>
+
+                <!-- Grid: image on left (lg), text on right (lg) -->
+                <div class="grid lg:grid-cols-3 gap-12 items-center">
+                    <!-- RECTANGULAR IMAGE: left on lg -->
+                    <div class="flex justify-center lg:justify-start">
+                        <div class="floating">
+                            <div class="rectangular-border w-fit">
+                                <!-- Updated rect image (same image used) -->
+                                <img src="https://i.imgur.com/q1GvfaA.jpeg"  alt="Pratik Bhandari" class="profile-img-rect">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TEXT: spans two columns on lg -->
+                    <div class="lg:col-span-2">
+                        <h3 class="text-2xl font-semibold mb-4">Future Mechanical Engineer</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            I am a dedicated student with a strong passion for mechanical engineering and innovation.
+                            Currently preparing for the IOE entrance examination, I aim to pursue my dreams of becoming
+                            a skilled mechanical engineer who can contribute to technological advancement and solve
+                            real-world problems.
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            With a solid academic foundation and a curious mindset, I am eager to explore the
+                            fascinating world of mechanical systems, design, and manufacturing processes.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="card-3d bg-blue-50 dark:bg-gray-800 p-4 rounded-lg">
+                                <i class="fas fa-graduation-cap text-blue-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold">Academic Excellence</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">3.94 GPA in +2</p>
+                            </div>
+                            <div class="card-3d bg-green-50 dark:bg-gray-800 p-4 rounded-lg">
+                                <i class="fas fa-target text-green-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold">Goal Oriented</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">IOE Preparation</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center lg:justify-start">
+                        <a href="resume.html" target="_blank" rel="noopener noreferrer" class="resume-btn poppins inline-flex items-center">
+                    <!-- <i class="fas fa-download mr-2"></i>--> View Resume 
+                     </a>
+                </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">Education</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="card-3d bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-blue-500 text-white p-3 rounded-lg">
+                                <i class="fas fa-school text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-2">Higher Secondary Education (+2)</h3>
+                                <p class="text-blue-500 font-medium mb-2">Gyan Jyoti Secondary School</p>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">Science Stream (Physics, Chemistry, Mathematics)</p>
+                                <div class="flex items-center space-x-4">
+                                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">
+                                        GPA: 3.94/4.0
+                                    </span>
+                                    <span class="text-gray-500 text-sm">NEB Board</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 mt-3">
+                                    Achieved excellent academic performance with strong foundation in core science subjects,
+                                    preparing for engineering entrance examinations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-3d bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-purple-500 text-white p-3 rounded-lg">
+                                <i class="fas fa-university text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-2">Bachelor's Degree (Upcoming)</h3>
+                                <p class="text-purple-500 font-medium mb-2">Institute of Engineering (IOE)</p>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">Mechanical Engineering</p>
+                                <div class="flex items-center space-x-4">
+                                    <span class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full text-sm font-medium">
+                                        Preparing for Entrance
+                                    </span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 mt-3">
+                                    Currently preparing for IOE entrance examination to pursue Bachelor's degree in
+                                    Mechanical Engineering, focusing on comprehensive understanding of engineering principles.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">Skills & Interests</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-semibold mb-6">Technical Skills</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-medium">Mathematics</span>
+                                        <span class="text-blue-500 font-semibold">90%</span>
+                                    </div>
+                                    <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                                        <div class="skill-bar bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="--width: 90%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-medium">Physics</span>
+                                        <span class="text-green-500 font-semibold">85%</span>
+                                    </div>
+                                    <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                                        <div class="skill-bar bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full" style="--width: 85%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-medium">Problem Solving</span>
+                                        <span class="text-purple-500 font-semibold">88%</span>
+                                    </div>
+                                    <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                                        <div class="skill-bar bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full" style="--width: 88%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-medium">Analytical Thinking</span>
+                                        <span class="text-red-500 font-semibold">92%</span>
+                                    </div>
+                                    <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                                        <div class="skill-bar bg-gradient-to-r from-red-500 to-red-600 h-3 rounded-full" style="--width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-semibold mb-6">Interests & Goals</h3>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="card-3d bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-xl border border-blue-200 dark:border-blue-700">
+                                    <i class="fas fa-cogs text-blue-500 text-2xl mb-3"></i>
+                                    <h4 class="font-semibold mb-2">Mechanical Design</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Passionate about creating innovative mechanical solutions</p>
+                                </div>
+
+                                <div class="card-3d bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-xl border border-green-200 dark:border-green-700">
+                                    <i class="fas fa-industry text-green-500 text-2xl mb-3"></i>
+                                    <h4 class="font-semibold mb-2">Manufacturing</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Interested in modern manufacturing processes</p>
+                                </div>
+
+                                <div class="card-3d bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-6 rounded-xl border border-purple-200 dark:border-purple-700">
+                                    <i class="fas fa-lightbulb text-purple-500 text-2xl mb-3"></i>
+                                    <h4 class="font-semibold mb-2">Innovation</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Always looking for creative engineering solutions</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">Projects</h2>
+                <div class="text-center mb-12">
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 max-w-2xl mx-auto">
+                        <i class="fas fa-lightbulb text-yellow-500 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Projects Coming Soon!</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            I'm currently focused on my IOE entrance preparation and building my foundation in engineering principles.
+                            While I haven't completed formal projects yet, I'm constantly working on small engineering concepts and
+                            preparing for exciting hands-on projects during my engineering studies.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card-3d bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-xl border border-blue-200 dark:border-blue-700">
+                        <i class="fas fa-cogs text-blue-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-3">Mechanical Design</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Planning to work on CAD modeling and mechanical system design projects during my engineering studies.</p>
+                    </div>
+
+                    <div class="card-3d bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-xl border border-green-200 dark:border-green-700">
+                        <i class="fas fa-tools text-green-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-3">Manufacturing</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Excited to explore manufacturing processes and create innovative solutions for real-world problems.</p>
+                    </div>
+
+                    <div class="card-3d bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-6 rounded-xl border border-purple-200 dark:border-purple-700">
+                        <i class="fas fa-rocket text-purple-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-3">Innovation</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Looking forward to participating in engineering competitions and developing innovative mechanical solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">Get In Touch</h2>
+                <div class="max-w-2xl mx-auto text-center mb-12">
+                    <p class="text-gray-600 dark:text-gray-300">
+                        I'm always excited to connect with fellow engineering enthusiasts, mentors, and anyone who shares
+                        a passion for innovation and technology. Feel free to reach out!
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div class="grid gap-6">
+                            <div class="card-3d bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-blue-500 text-white p-3 rounded-full">
+                                        <i class="fas fa-envelope text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold">Email</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">prateekbhandary18@email.com</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-3d bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-green-500 text-white p-3 rounded-full">
+                                        <i class="fas fa-phone text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold">Phone</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">+977 9749361222</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-3d bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="bg-red-500 text-white p-3 rounded-full">
+                                        <i class="fas fa-map-marker-alt text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold">Location</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">Tulsipur, 12 Sitalpur Dang</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-start space-x-4">
+                            <a href="https://www.facebook.com/pratik.bhandari.210873" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full transition-all transform hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="bg-blue-400 hover:bg-blue-500 text-white p-3 rounded-full transition-all transform hover:scale-110"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="bg-blue-700 hover:bg-blue-800 text-white p-3 rounded-full transition-all transform hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/pratik091" class="bg-gray-800 hover:bg-gray-900 text-white p-3 rounded-full transition-all transform hover:scale-110"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="card-3d bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-6 text-center">Send Message</h3>
+                        <form action="https://formspree.io/f/mwpqyblg" method="POST" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">First Name</label>
+                                    <input type="text" name="firstName" required class="form-input w-full" placeholder="Your first name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Last Name</label>
+                                    <input type="text" name="lastName" required class="form-input w-full" placeholder="Your last name">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email Address</label>
+                                <input type="email" name="email" required class="form-input w-full" placeholder="your.email@example.com">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Subject</label>
+                                <input type="text" name="subject" required class="form-input w-full" placeholder="What's this about?">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Message</label>
+                                <textarea name="message" rows="5" required class="form-textarea w-full resize-none" placeholder="Write your message here..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-3 px-6 rounded-xl font-semibold transition-all transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Pratik Bhandari. All rights reserved.</p>
+            <p class="text-gray-400 mt-2">Aspiring Mechanical Engineer | IOE Entrance Candidate</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- THEME HANDLING (robust) ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const body = document.body;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                // Add both html 'dark' (Tailwind) and body helpers for custom CSS
+                html.classList.add('dark');
+                body.classList.add('dark');
+                body.classList.add('dark-mode'); // kept for legacy rules
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                body.classList.remove('dark');
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize theme based on saved value or system preference
+        (function initTheme() {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                applyTheme(saved);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light');
+            }
+        })();
+
+        // Toggle when button clicked
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.classList.contains('dark');
+            applyTheme(isDark ? 'light' : 'dark');
+        });
+
+        // --- MOBILE MENU ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        mobileMenu.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+
+        // --- SMOOTH SCROLL (and close mobile menu on click) ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetSelector = this.getAttribute('href');
+                if (!targetSelector || targetSelector === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(targetSelector);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    if (!mobileNav.classList.contains('hidden')) {
+                        mobileNav.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // --- INTERSECTION OBSERVER FOR SECTION FADE & SKILL BARS ---
+        const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -100px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Animate skill bars inside section
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.classList.add('animate');
+                        }, 300 + index * 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-fade').forEach(section => observer.observe(section));
+
+        // --- CONTACT FORM MAILTO HANDLER ---
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const firstName = formData.get('firstName') || '';
+            const lastName = formData.get('lastName') || '';
+            const email = formData.get('email') || '';
+            const subject = formData.get('subject') || 'Contact';
+            const message = formData.get('message') || '';
+
+            const mailtoLink = `mailto:pratik.bhandari@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+                `Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`
+            )}`;
+
+            window.location.href = mailtoLink;
+            alert('Email client opened! Please send the email from your email application.');
+            this.reset();
+        });
+
+        // --- PARALLAX (lightweight) ---
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const hero = document.getElementById('home');
+                    if (hero && scrolled < window.innerHeight) {
+                        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // --- ACTIVE NAV LINK HIGHLIGHT ---
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (scrollY >= sectionTop) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-500');
+                if (link.getAttribute('href').slice(1) === current) link.classList.add('text-blue-500');
+            });
+        });
+
+        // --- SMALL INTERACTIONS ON CARDS ---
+        document.querySelectorAll('.card-3d').forEach(card => {
+            card.addEventListener('mouseenter', () => card.style.transform = 'perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02)');
+            card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)');
+        });
+
+        // --- LOAD FADE-IN ---
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.4s ease';
+                document.body.style.opacity = '1';
+            }, 80);
+        });
+    </script>
+</body>
+</html>

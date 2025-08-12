@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pratik Bhandari | Mechanical Engineering Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.4s, color 0.4s;
+      background-color: white;
+      color: #1e293b;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body.dark {
+      background-color: #0f172a;
+      color: #cbd5e1;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: #f1f5f9;
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgb(0 0 0 / 0.15);
+      overflow: hidden;
+      padding: 2rem 3rem;
+      transition: background-color 0.4s;
+    }
+
+    body.dark .container {
+      background: #1e293b;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 2rem;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 15px #667eea;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.1) perspective(600px) translateZ(20px);
+    }
+
+    .name-title {
+      flex-grow: 1;
+    }
+
+    .name-title h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .name-title p {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    body.dark .name-title p {
+      color: #94a3b8;
+    }
+
+    /* Section styles */
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #667eea;
+      display: inline-block;
+      padding-bottom: 0.25rem;
+      color: #334155;
+    }
+
+    body.dark section h2 {
+      color: #cbd5e1;
+      border-color: #764ba2;
+    }
+
+    /* Cards with subtle 3D hover */
+    .card {
+      background: white;
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgb(102 126 234 / 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    body.dark .card {
+      background: #334155;
+      box-shadow: 0 8px 20px rgb(118 75 162 / 0.5);
+    }
+
+    .card:hover {
+      transform: perspective(600px) translateZ(20px);
+      box-shadow: 0 20px 40px rgb(102 126 234 / 0.4);
+    }
+
+    /* Skill bars */
+    .skill {
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #334155;
+    }
+
+    body.dark .skill-label {
+      color: #cbd5e1;
+    }
+
+    .skill-bar-bg {
+      background-color: #cbd5e1;
+      border-radius: 9999px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    body.dark .skill-bar-bg {
+      background-color: #475569;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transition: width 0.5s ease;
+    }
+
+    /* Quote */
+    .quote {
+      font-style: italic;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #64748b;
+    }
+
+    body.dark .quote {
+      color: #a5b4fc;
+    }
+
+    /* Dark mode toggle button with icons */
+    #toggle-theme {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #e2e8f0;
+      border: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: #334155;
+      font-size: 1.5rem;
+      line-height: 1;
+      transition: background-color 0.3s ease;
+      z-index: 100;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+    }
+
+    #toggle-theme:hover {
+      background: #c7d2fe;
+    }
+
+    body.dark #toggle-theme {
+      background: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <button id="toggle-theme" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">🌙</button>
+
+  <main class="container" role="main" aria-label="Resume of Pratik Bhandari">
+    <header class="header">
+      <img
+        src="https://i.imgur.com/q1GvfaA.jpeg"
+        alt="Profile Picture of Pratik Bhandari"
+        class="profile-pic"
+        loading="lazy"
+      />
+      <div class="name-title">
+        <h1>Pratik Bhandari</h1>
+        <p>Aspiring Mechanical Engineer</p>
+      </div>
+    </header>
+
+    <section aria-labelledby="about-me-heading">
+      <h2 id="about-me-heading">About Me</h2>
+      <p>
+        A dedicated student preparing for the IOE entrance examination with a strong passion for mechanical engineering. 
+        Committed to learning and innovation, I aspire to develop practical engineering solutions that positively impact society.
+      </p>
+    </section>
+
+    <section aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+
+      <article class="card" aria-label="Higher Secondary Education details">
+        <h3 class="font-semibold text-lg mb-1">Higher Secondary Education (+2)</h3>
+        <p><strong>Gyan Jyoti Secondary School</strong></p>
+        <p>Science Stream (Physics, Chemistry, Mathematics)</p>
+        <p>GPA: 3.94 / 4.0</p>
+        <p>
+          Achieved strong academic performance, building a solid foundation in core science subjects essential for engineering.
+        </p>
+      </article>
+
+      <article class="card" aria-label="Upcoming Bachelor's Degree details">
+        <h3 class="font-semibold text-lg mb-1">Bachelor's Degree (Upcoming)</h3>
+        <p><strong>Institute of Engineering (IOE)</strong></p>
+        <p>Mechanical Engineering</p>
+        <p>Currently preparing for entrance exam</p>
+        <p>
+          Aiming to gain comprehensive engineering knowledge with focus on mechanical design and innovation.
+        </p>
+      </article>
+    </section>
+
+    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+
+      <div class="skill" aria-label="Mathematics skill level 90%">
+        <div class="skill-label">
+          <span>Mathematics</span><span>90%</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 90%;"></div>
+        </div>
+      </div>
+
+      <div class="skill" aria-label="Physics skill level 85%">
+        <div class="skill-label">
+          <span>Physics</span><span>85%</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 85%;"></div>
+        </div>
+      </div>
+
+      <div class="skill" aria-label="Problem Solving skill level 88%">
+        <div class="skill-label">
+          <span>Problem Solving</span><span>88%</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 88%;"></div>
+        </div>
+      </div>
+
+      <div class="skill" aria-label="Analytical Thinking skill level 92%">
+        <div class="skill-label">
+          <span>Analytical Thinking</span><span>92%</span>
+        </div>
+        <div class="skill-bar-bg">
+          <div class="skill-bar-fill" style="width: 92%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="interests-heading">
+      <h2 id="interests-heading">Interests</h2>
+
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Mechanical Design & Innovation</li>
+        <li>Modern Manufacturing Processes</li>
+        <li>Engineering Problem Solving</li>
+      </ul>
+    </section>
+
+    <section aria-label="Engineering Quote">
+      <p class="quote">
+        “Scientists investigate that which already is; engineers create that which has never been.” <br />– Albert Einstein
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-theme');
+    const body = document.body;
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+
+      // Update toggle icon and aria-label/title
+      if (body.classList.contains('dark')) {
+        toggleBtn.textContent = '☀️'; // Sun icon
+        toggleBtn.setAttribute('aria-label', 'Toggle Light Mode');
+        toggleBtn.setAttribute('title', 'Toggle Light Mode');
+      } else {
+        toggleBtn.textContent = '🌙'; // Moon icon
+        toggleBtn.setAttribute('aria-label', 'Toggle Dark Mode');
+        toggleBtn.setAttribute('title', 'Toggle Dark Mode');
+      }
+
+      // Save preference
+      localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Load saved theme preference on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark');
+        toggleBtn.textContent = '☀️';
+        toggleBtn.setAttribute('aria-label', 'Toggle Light Mode');
+        toggleBtn.setAttribute('title', 'Toggle Light Mode');
+      }
+    });
+  </script>
+</body>
+</html>
